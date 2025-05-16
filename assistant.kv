@@ -1,0 +1,72 @@
+<HomeScreen>:
+    name: "home"
+
+    canvas.before:
+        Color:
+            rgba: (0.05, 0.05, 0.05, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: 25
+        spacing: 10
+        canvas.before:
+            Color:
+                rgba: (0.08, 0.08, 0.08, 1)
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [20]
+
+        # Top Bar
+        BoxLayout:
+            size_hint_y: None
+            height: 50
+            Label:
+                text: "ATHENA"
+                font_size: '35sp'
+                bold: True
+                color: 0.0, 1.0, 0.714, 1
+
+
+        # Display Area
+        ScrollView:
+            id: scrollview
+            do_scroll_x: False
+            BoxLayout:
+                id: output_box
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+                padding: 10
+                spacing: 10
+
+        # Input Area
+        BoxLayout:
+            size_hint_y: None
+            height: 50
+            spacing: 10
+
+            TextInput:
+                id: user_input
+                hint_text: "Ask me anything..."
+                font_size: 16
+                multiline: False
+                background_normal: ''
+                background_color: (.2, .2, .2, 1)
+                foreground_color: 1, 1, 1, 1
+                padding: [10, 10]
+                radius: [10,]
+                on_text_validate: root.on_send()
+
+            Button:
+                text: "Ask"
+                font_size: 18
+                size_hint_x: None
+                width: 80
+                background_normal: ""
+                background_color: (0.25, 0.25, 0.25, 1)
+                on_release: root.on_send()
+                border: (10, 6, 10, 10)
